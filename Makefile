@@ -8,6 +8,8 @@
 SRC = src/main.c \
 	src/my_lib.c \
 	src/event.c \
+	src/init_set_make_functions.c \
+	src/menu.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -20,7 +22,7 @@ GRAPHIC = -lcsfml-graphics -lcsfml-window -lcsfml-system
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(LIBFLAG) $(NAME) $(OBJ) $(GRAPHIC)
+	$(LIBFLAG) $(NAME) $(OBJ) -g $(GRAPHIC) 
 
 clean:
 	rm -f $(OBJ)
