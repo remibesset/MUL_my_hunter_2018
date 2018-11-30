@@ -7,7 +7,6 @@
 
 #include <SFML/Graphics.h>
 #include <SFML/System/Time.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include "../include/my.h"
 
@@ -23,7 +22,7 @@ make_clock_t *clockpos, int run)
     game->i = 1;
     game->die = 0;
     game->run = run;
-    game->vitesse = 0.001;
+    game->vitesse = 0.015;
     game->speed_anim = 0.2;
     game->health = 10;
     game->direction = 1;
