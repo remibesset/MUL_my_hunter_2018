@@ -10,6 +10,8 @@ SRC = src/main.c \
 	src/event.c \
 	src/init_set_make_functions.c \
 	src/menu.c \
+	src/load_score.c \
+	src/init_text.c \
 
 OBJ = $(SRC:.c=.o)
 

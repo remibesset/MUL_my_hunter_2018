@@ -53,3 +53,15 @@ void my_putstr(char *str)
         i++;
     }
 }
+
+int char_to_int(char *score)
+{
+    int score_int = 0;
+
+    for (int i = 0; score[i] != '\0'; i++) {
+        if (score[i] >= '0' && score[i] <= '9') {
+            score_int = (score_int * 10) + (score[i] - '0');
+        }
+    }
+    return (score_int);
+}
