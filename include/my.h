@@ -38,6 +38,9 @@ typedef struct init_game
 {
     sfRenderWindow *window;
     sfEvent event;
+    sfVideoMode mode;
+    sfIntRect rect;
+    sfVector2f position;
     init_sp_tex_t bird;
     init_sp_tex_t bg;
     init_sp_tex_t img_menu;
@@ -49,9 +52,6 @@ typedef struct init_game
     text_score_t text_highs;
     make_clock_t clockanim;
     make_clock_t clockpos;
-    sfVideoMode mode;
-    sfIntRect rect;
-    sfVector2f position;
     int run;
     int i;
     int die;
