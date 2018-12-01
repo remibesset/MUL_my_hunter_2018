@@ -98,6 +98,7 @@ void init_text_score(text_score_t *text_s);
 void init_text_high_score(text_score_t *text_highs);
 void init_music(game_t *game);
 int play(game_t game);
-int main(void);
+int menu(void);
+int main(int ac, char **ag);
 
 #endif

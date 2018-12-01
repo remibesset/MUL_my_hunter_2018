@@ -6,6 +6,7 @@
 ##
 
 SRC = src/main.c \
+	src/game.c \
 	src/my_lib.c \
 	src/event.c \
 	src/init_set_make_functions.c \

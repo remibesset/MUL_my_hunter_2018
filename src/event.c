@@ -33,7 +33,7 @@ void close_window(game_t game, sfEvent event)
     if (event.type == sfEvtClosed || (event.type == sfEvtKeyPressed &&
     event.key.code == sfKeyEscape)) {
         sfRenderWindow_close(game.window);
-        main();
+        menu();
     }
 }
 
@@ -48,7 +48,7 @@ void event_menu_defeat(game_t game)
             sfRenderWindow_close(game.window);
         } else if (mp.x > 744 && mp.x < 866 && mp.y > 554 && mp.y < 593) {
             sfRenderWindow_close(game.window);
-            main();
+            menu();
         } else if (mp.x > 480 && mp.x < 769 && mp.y > 484 && mp.y < 538) {
             play(game);
         }

@@ -64,7 +64,7 @@ void set_texture_sprite_menu(game_t *game)
     sfSprite_setPosition(game->img_menu.sprite, pos_menu);
 }
 
-int main(void)
+int menu(void)
 {
     game_t game;
 
