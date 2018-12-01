@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/my.h"
+#include <SFML/Audio.h>
 
 void do_animation(make_clock_t *clockanim, game_t *game, int *i,
 sfIntRect *rect)
@@ -50,8 +51,10 @@ sfIntRect *rect)
     if ((*position).x >= (*mode).width + (*rect).height) {
         (*position).x = -110;
         (*position).y = rand() % ((*mode).height - ((*rect).height + 200) / 2);
-        if (game->run == 1)
+        if (game->run == 1) {
             game->health -= 1;
+            sfMusic_play(game->heart.song);
+        }
     }
     if (game->die == 1) {
         if (game->text_s.score == 30)
@@ -76,6 +79,8 @@ void target_mouse(game_t *game)
 
 int play(game_t game)
 {
+    sfMusic_play(game.bird.song);
+    sfMusic_setLoop(game.bird.song, 1);
     set_value(&game, &game.clockanim, &game.clockpos, 1);
     set_texture_sprite(&game.rect, &game);
     init_text_score(&game.text_s);

@@ -37,21 +37,16 @@ char *load_file_in_memo(char const *filepath, game_t *game)
     struct stat fileinfo;
     int status = stat(filepath, &fileinfo);
     int size = fileinfo.st_size;
-    char *buff = malloc(sizeof(char) * (size + 12));
+    char *buff = malloc(sizeof(char) * (size + 14 + 1));
     int fd = open(filepath, O_RDWR);
     int j = 0;
 
+    for (int i = 0; i < size + 15; i++)
+        buff[i] = '\0';
     if (game->text_s.score > 0)
         write(fd, my_revstr(conv_i_str(game->text_s.score)),
         my_strlen(conv_i_str(game->text_s.score)));
     read(fd, buff, size);
-    for (int i = 0; buff[i] != '\0'; i++) {
-        if (buff[i] >= '0' && buff[i] <= '9') {
-            buff[j] = buff[i];
-            j++;
-        }
-    }
-    buff[j] = '\0';
     buff = mem_alloc("High Score : ", buff);
     close(fd);
     return (buff);
@@ -63,9 +58,8 @@ void game_over(game_t *game, sfVector2f pos_defeat)
         game->mode.height / 2};
 
     if (game->health <= 0) {
-        if (game->text_s.score > game->text_highs.score && game->health == 0) {
+        if (game->text_s.score > game->text_highs.score && game->health == 0)
             load_file_in_memo("include/score.txt", game);
-        }
         sfText_setPosition(game->text_s.text_score, pos_score);
         sfSprite_setPosition(game->defeat.sprite, pos_defeat);
         sfRenderWindow_drawSprite(game->window, game->bg_grey.sprite, NULL);

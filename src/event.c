@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.h>
 #include <SFML/Window/Event.h>
+#include <SFML/Audio.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/my.h"
@@ -27,11 +28,13 @@ const char *conv_i_str(int nbr)
     return (result);
 }
 
-void close_window(sfRenderWindow *window, sfEvent event)
+void close_window(game_t game, sfEvent event)
 {
     if (event.type == sfEvtClosed || (event.type == sfEvtKeyPressed &&
-        event.key.code == sfKeyEscape))
-        sfRenderWindow_close(window);
+    event.key.code == sfKeyEscape)) {
+        sfRenderWindow_close(game.window);
+        main();
+    }
 }
 
 void event_menu_defeat(game_t game)
@@ -60,6 +63,7 @@ game_t game_s, int *score)
     if (game->event.type == sfEvtMouseButtonPressed &&
     sfMouse_isButtonPressed(sfMouseLeft) == sfTrue) {
         mp = sfMouse_getPosition((const sfWindow *)window);
+        sfMusic_play(game->target.song);
         if (mp.x < game->position.x + 110 && mp.x >= game->position.x &&
         mp.y < game->position.y + 110 && mp.y >= game->position.y) {
             (*score)++;
@@ -76,7 +80,7 @@ int analyse_events(sfRenderWindow *window, game_t game, int *score)
     sfMouseButtonEvent mouse_event;
 
     while (sfRenderWindow_pollEvent(window, &game.event)) {
-        close_window(window, game.event);
+        close_window(game, game.event);
         return (manage_mouse_click(window, &game, game, score));
     }
     return (0);

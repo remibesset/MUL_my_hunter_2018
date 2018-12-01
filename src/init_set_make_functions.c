@@ -7,6 +7,8 @@
 
 #include <SFML/Graphics.h>
 #include <SFML/System/Time.h>
+#include <SFML/Audio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include "../include/my.h"
 
@@ -31,6 +33,7 @@ make_clock_t *clockpos, int run)
     if (game->run == 0)
         game->window = sfRenderWindow_create(game->mode, "MyHunter",
         sfDefaultStyle, NULL);
+    init_music(game);
     sfRenderWindow_setMouseCursorVisible(game->window, sfFalse);
 }
 
@@ -82,8 +85,16 @@ void draw_all(sfRenderWindow *window, game_t *game, sfText *text_score)
 
 void make_destroy(game_t game)
 {
+    sfMusic_destroy(game.img_menu.song);
+    sfMusic_destroy(game.heart.song);
+    sfMusic_destroy(game.target.song);
+    sfMusic_destroy(game.bird.song);
     sfSprite_destroy(game.bird.sprite);
     sfSprite_destroy(game.bg.sprite);
+    sfSprite_destroy(game.bg_grey.sprite);
+    sfSprite_destroy(game.target.sprite);
+    sfSprite_destroy(game.heart.sprite);
+    sfSprite_destroy(game.defeat.sprite);
     sfClock_destroy(game.clockanim.clock_st);
     sfClock_destroy(game.clockpos.clock_st);
     if (game.run == 1) {

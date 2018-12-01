@@ -11,7 +11,7 @@ SRC = src/main.c \
 	src/init_set_make_functions.c \
 	src/menu.c \
 	src/load_score.c \
-	src/init_text.c \
+	src/init_text_music.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -19,12 +19,14 @@ NAME = my_hunter
 
 LIBFLAG = gcc -o
 
-GRAPHIC = -lcsfml-graphics -lcsfml-window -lcsfml-system
+VAL_FLAG = -g3
+
+GRAPHIC = -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(LIBFLAG) $(NAME) $(OBJ) -g $(GRAPHIC) 
+	$(LIBFLAG) $(NAME) $(OBJ) $(VAL_FLAG) $(GRAPHIC)
 
 clean:
 	rm -f $(OBJ)

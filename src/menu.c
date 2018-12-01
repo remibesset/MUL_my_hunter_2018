@@ -7,6 +7,8 @@
 
 #include <SFML/Graphics.h>
 #include <SFML/System/Time.h>
+#include <SFML/Audio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include "../include/my.h"
 
@@ -21,6 +23,7 @@ void manage_mouse_click_menu(sfRenderWindow *window, game_t game)
         mouse_position.x <= game.mode.width / 2 - 250 + 200 &&
         mouse_position.y > game.mode.height / 2
         + 80 && mouse_position.y <= game.mode.height / 2 + 130) {
+            sfMusic_stop(game.img_menu.song);
             play(game);
         }
         else if (mouse_position.x >= game.mode.width / 2 - 250 + 250 &&
@@ -66,6 +69,8 @@ int main(void)
     game_t game;
 
     set_value(&game, &game.clockanim, &game.clockpos, 0);
+    sfMusic_play(game.img_menu.song);
+    sfMusic_setLoop(game.img_menu.song, 1);
     game.run = 0;
     set_texture_sprite(&game.rect, &game);
     set_texture_sprite_menu(&game);

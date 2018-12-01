@@ -11,6 +11,7 @@
 #include <stdarg.h>
 #include <SFML/Graphics.h>
 #include <SFML/System/Time.h>
+#include <SFML/Audio.h>
 
 typedef struct make_clock
 {
@@ -23,6 +24,7 @@ typedef struct init_sp_tex
 {
     sfTexture *texture;
     sfSprite *sprite;
+    sfMusic *song;
 } init_sp_tex_t;
 
 typedef struct text_score_a
@@ -68,7 +70,7 @@ void my_putstr(char *str);
 void my_putstr_i(char *str, int max);
 int my_put_nbr_print(int nb);
 int my_put_nbr(int nb);
-void close_window(sfRenderWindow *window, sfEvent event);
+void close_window(game_t game, sfEvent event);
 int analyse_events(sfRenderWindow *window, game_t game, int *score);
 const char *conv_i_str(int nbr);
 int manage_mouse_click(sfRenderWindow *window, game_t *game,
@@ -94,6 +96,7 @@ void game_over(game_t *game, sfVector2f pos_defeat);
 int char_to_int(char *score);
 void init_text_score(text_score_t *text_s);
 void init_text_high_score(text_score_t *text_highs);
+void init_music(game_t *game);
 int play(game_t game);
 int main(void);
 
