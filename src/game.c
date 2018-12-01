@@ -7,7 +7,6 @@
 
 #include <SFML/Graphics.h>
 #include <SFML/System/Time.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include "../include/my.h"
 #include <SFML/Audio.h>

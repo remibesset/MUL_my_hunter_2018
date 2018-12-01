@@ -8,7 +8,6 @@
 #include <SFML/Graphics.h>
 #include <SFML/Window/Event.h>
 #include <SFML/Audio.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include "../include/my.h"
 
